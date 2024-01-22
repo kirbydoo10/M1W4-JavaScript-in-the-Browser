@@ -30,7 +30,9 @@
   <!-- Add an inline event handler that logs "From inline event hanlder" when the button is clicked -->
   <!-- Resource: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these
             - See other event listener mechanisms section -->
-  <button>Call inline event handler</button>
+
+
+  <button onclick="console.log('From inline event Handler')">Call inline event handler</button>
 
   <!-- Todo 3.3a Create a button with the text "Call addEventListener" -->
   <button id="addEventListener">Call addEventListener</button>
@@ -44,16 +46,16 @@
 
   <script>
     const results = {};
-    const firstInput = document.getElementById("firstName");
-    const lastInput = document.getElementById("lastName");
+    const firstName1 = document.getElementById("firstName");
+    const lastName1 = document.getElementById("lastName");
     // Todo 3.4b When the user presses the submit form button, append the contents of the form to results. Then, display the content of results
     // Relevant Link: https://stackoverflow.com/questions/11563638/how-do-i-get-the-value-of-text-input-field-using-javascript
     document.getElementById("submit-btn").addEventListener("click", (e) => {
       e.preventDefault(); // prevents the page from being refreshed
       // additional validation
       console.log({
-        firstName: firstInput.value,
-        lastName: lastInput.value,
+        firstName: firstName1.value,
+        lastName: lastname1.value,
       });
       // post to server
     });

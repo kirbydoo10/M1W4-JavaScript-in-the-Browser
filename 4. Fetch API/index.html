@@ -11,18 +11,66 @@
     <script>
         async function start() {
             // Here's the api that you will be working with today https://reqres.in/
-            // Relevant Tutorial: https://www.youtube.com/watch?v=cuEtnrL9-H0
-            // Relevant Link: https://www.freecodecamp.org/news/how-to-fetch-data-from-an-api-using-the-fetch-api-in-javascript/
+            // Resource: https://www.youtube.com/watch?v=cuEtnrL9-H0
+            // Resource: https://www.freecodecamp.org/news/how-to-fetch-data-from-an-api-using-the-fetch-api-in-javascript/
+
+            // Checkpoint 4.1 What are HTTP requests and reponses? What are the various HTTP verbs and what do they do?
+            // Answer: 
 
             // Todo 4.1 Fetch the list of users. Outout the first and second page of users.
+            fetch('https://reqres.in/api/users?page=1') // Fetching the first page of users
+                .then(res => res.json())
+                .then(data => console.log('Page 1:', data.data));
 
-            // Todo 4.2 Fetch the information about a single user. Display their information
+            fetch('https://reqres.in/api/users?page=2') // Fetching the first page of users
+                .then(res => res.json())
+                .then(data => console.log('Page 2:', data.data));
+                
 
+            // Todo 4.2 Fetch the information about a single user. 
+            //Display their information
+            fetch('https://reqres.in/api/users/2')
+                .then(res => res.json())
+                .then(data => console.log('Single User:', data.data))
             // Todo 4.3 Create a user
 
+            var userID;
+
+            fetch('https://reqres.in/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    user:'Lance'
+                })
+            }).then(res => {console.log(res); return res.json()})
+              .then(data => {userID = data.userID; console.log("Create User", data)})
+
+            
             // Todo 4.4 Update the information of the user that you have created
 
+            fetch('https://reqres.in/api/users/${userID}', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    user:'Lance Lazaro'
+                })
+            }).then(res => {return res.json()})
+              .then(data => console.log(data))
+
             // Todo 4.5 Delete the user that you have created
+
+            fetch('https://reqres.in/api/users/${userID}', {
+                method:'DELETE'
+            })
+            
+
+
+            // Checkpoint 4.2 What is the difference between callbacks, then-catch vs await-try-catch? When should you use one over the other
+            // Answer: 
         }
         start()
 
